@@ -1,0 +1,45 @@
+<script>
+
+    let globalid=1;
+    function MarkasDone(id)
+    {
+        const container=document.getElementById(id);
+        container.children[2].innerHTML="Done!";// .children is inbuild 
+    }
+    function creatingDivs(title,description,id)
+    {
+        const outerdiv = document.createElement("div");
+        const innerDivTitle = document.createElement("div");
+        innerDivTitle.innerHTML = title;
+        const innerDivDescription = document.createElement("div");
+        innerDivDescription.innerHTML = description;
+        const innerDivButton=document.createElement("button");
+        innerDivButton.innerHTML = "Mark as Done";
+        innerDivButton.setAttribute("onclick",`MarkasDone(${id})`);
+        outerdiv.appendChild(innerDivTitle);
+        outerdiv.appendChild(innerDivDescription);
+        outerdiv.appendChild(innerDivButton);
+        outerdiv.setAttribute("id",id);
+        return outerdiv;
+    }
+
+
+    function addtodo()
+    {
+        const title=document.getElementById("title").value;
+        const description=document.getElementById("description").value;
+
+        const container=document.getElementById("container");
+
+        container.appendChild(creatingDivs(title,description,globalid++));
+    }
+</script>
+
+<body>
+    <input type="text" id="title" placeholder="Enter title">
+    <br></br>
+    <input type="text" id="description" placeholder="Enter description">
+    <br></br>
+    <button onclick="addtodo()">Add</button>
+    <div id="container"></div>
+</body>
